@@ -1,41 +1,32 @@
-# Prerequisites
+# ===== C++ generic =====
 *.d
-
-# Compiled Object files
 *.slo
 *.lo
 *.o
 *.obj
-
-# Precompiled Headers
 *.gch
 *.pch
 
-# Linker files
-*.ilk
+# ===== Visual Studio =====
+.vs/
+*.VC.db
+*.VC.opendb
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
 
-# Debugger Files
-*.pdb
+# Build folders
+Debug/
+Release/
+x64/
+x86/
+build/
 
-# Compiled Dynamic libraries
-*.so
-*.dylib
-*.dll
+# Logs
+*.log
 
-# Fortran module files
-*.mod
-*.smod
-
-# Compiled Static libraries
-*.lai
-*.la
-*.a
-*.lib
-
-# Executables
-*.exe
-*.out
-*.app
-
-# debug information files
-*.dwo
+# Temporary files
+*.tmp
+*.tlog
+*.lastbuildstate
