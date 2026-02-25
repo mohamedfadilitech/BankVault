@@ -73,7 +73,21 @@ You need a C++ compiler installed:
 * **Windows:** MinGW / MSVC (Visual Studio)
 * **Linux/macOS:** `g++` via GCC
 
-### Compile & Run
+### Option 1 — Visual Studio (Recommended for best experience ⭐)
+
+Visual Studio handles compilation, running, and debugging automatically with no extra setup.
+
+1. Download [Visual Studio Community](https://visualstudio.microsoft.com/) — free
+2. During install, select **"Desktop development with C++"**
+3. Open Visual Studio → **Create a new project** → **Empty Project (C++)**
+4. Add all `.h`, `.cpp`, and `clientsData.txt` files via **Project → Add Existing Item**
+5. Press `Ctrl + F5` to compile and run
+
+> ✅ `system("cls")` and `system("pause")` work perfectly on Visual Studio since it runs on Windows CMD.
+
+---
+
+### Option 2 — g++ via Terminal
 
 ```bash
 # Clone the repository
@@ -84,11 +98,11 @@ cd BankVault
 g++ project.cpp clientList.cpp menu.cpp deleteClient.cpp addNewClient.cpp update.cpp transaction.cpp -o BankVault
 
 # Run
-./BankVault        # Linux / macOS
-BankVault.exe      # Windows
+./BankVault        # Linux / macOS / Git Bash
+BankVault.exe      # Windows CMD
 ```
 
-> ⚠️ **Note:** `system("cls")` and `system("pause")` are Windows-specific. On Linux/macOS replace `system("cls")` with `system("clear")`.
+> ⚠️ **Git Bash users:** `system("cls")` does not work in Git Bash. Replace all occurrences of `system("cls")` with `system("clear")` in the source files before compiling.
 
 > ⚠️ **Important:** Make sure `clientsData.txt` is in the **same directory** as the executable when running.
 
