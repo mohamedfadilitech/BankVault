@@ -3,6 +3,7 @@
 #include "addNewClient.h"
 #include "deleteClient.h"
 #include "update.h"
+#include "transaction.h"
 #include <iostream>
 
 using namespace std;
@@ -13,22 +14,16 @@ void runMainMenu(stClient& client) {
     bool found;
     string accountId;
 
-    while (selectedOption != 6) {
+    while (selectedOption != 7) {
         system("cls");
 
         switch (selectedOption) {
 
         case 1:
-            cout << "======================================\n";
-            cout << "\t Show Client List Screen\n";
-            cout << "======================================\n";
             printClientInfos();
             break;
 
         case 2:
-            cout << "======================================\n";
-            cout << "\t Add New Client Screen\n";
-            cout << "======================================\n";
             recordToFile();
             break;
 
@@ -58,6 +53,10 @@ void runMainMenu(stClient& client) {
             cout << "======================================\n";
             accountId = readAccountId();
             print_answer(accountId, client);
+            break;
+
+        case 6:
+            transaction(client);
             break;
         }
 

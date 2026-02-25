@@ -1,11 +1,4 @@
-#pragma once
-#include<iostream>
-#include<cctype>
-#include<string>
-#include<fstream>
-#include "clientList.h"
-
-using namespace std;
+#include "deleteClient.h"
 
 string readAccountId() {
 	string accountId;
@@ -15,14 +8,13 @@ string readAccountId() {
 	return accountId;
 }
 
-string	join(vector<string>& vStr, string delim = "#//#") {
+string join(vector<string>& vStr, string delim) {
 
 	string s = "";
 	for (string& str : vStr) {
 		s += str + delim;
 	}
 	return s.substr(0, s.length() - delim.length());
-
 }
 
 bool is_match(string& accountId, vector<stClient>& vClients, stClient& client) {
@@ -35,28 +27,27 @@ bool is_match(string& accountId, vector<stClient>& vClients, stClient& client) {
 	}
 	return false;
 }
-bool	print_answer(string& accountId, stClient& client) {
 
+bool print_answer(string& accountId, stClient& client) {
 
 	vector<stClient> vClients = FileToStClient();
 	bool found = is_match(accountId, vClients, client);
 
 	if (found) {
 		cout << "\n\n The Following Are Client Details \n\n";
-		cout << "Account Id : " << client.accountId << endl;
-		cout << "Pin Code: " << client.pinCode << endl;
-		cout << "Full Name: " << client.fullName << endl;
-		cout << "Phone Number: " << client.phone << endl;
-		cout << "Account Balance: " << client.accountBalance << endl;
+		cout << "Account Id : "      << client.accountId      << endl;
+		cout << "Pin Code: "         << client.pinCode        << endl;
+		cout << "Full Name: "        << client.fullName       << endl;
+		cout << "Phone Number: "     << client.phone          << endl;
+		cout << "Account Balance: "  << client.accountBalance << endl;
 		return true;
 	}
 	else {
 		cout << "The Client With Account Id :" << accountId << " Not Found" << endl;
 		return false;
 	}
-
-
 }
+
 void removeTheMatch(string& accountId, vector<stClient>& vClients) {
 
 	for (int i = 0; i < vClients.size(); i++) {
@@ -68,6 +59,7 @@ void removeTheMatch(string& accountId, vector<stClient>& vClients) {
 }
 
 void backToFile(string& accountId) {
+
 	vector<stClient> vClients = FileToStClient();
 	removeTheMatch(accountId, vClients);
 
@@ -96,7 +88,7 @@ void backToFile(string& accountId) {
 	myFile.close();
 }
 
-void	DeleteClient(string& accountId) {
+void DeleteClient(string& accountId) {
 	char choice;
 	do {
 		cout << "Do You Wanna Delete This Client ? Y : N : ";
@@ -108,13 +100,4 @@ void	DeleteClient(string& accountId) {
 		backToFile(accountId);
 		cout << "\n\n The Client With Account Id (" << accountId << ") Is Deleted \n" << endl;
 	}
-
 }
-
-//int main() {
-//	string accountId = readAccountId();
-//	stClient client;
-//	bool found = print_answer(accountId, client);
-//	if (found)
-//		DeleteClient(accountId);
-//}

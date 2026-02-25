@@ -1,17 +1,6 @@
-#pragma once
-#include<iostream>
-#include<vector>
-#include<cctype>
-#include<string>
-#include<fstream>
-#include "clientList.h"
-#include "deleteClient.h"
+#include "update.h"
 
-
-using namespace std;
-
-
-stClient	updateClient(string& accountId) {
+stClient updateClient(string& accountId) {
 
 	stClient updatedClient;
 
@@ -30,6 +19,7 @@ stClient	updateClient(string& accountId) {
 }
 
 void backToFileUpdated(string& accountId) {
+
 	vector<stClient> vClients = FileToStClient();
 	removeTheMatch(accountId, vClients);
 	stClient updatedClient = updateClient(accountId);
@@ -60,7 +50,7 @@ void backToFileUpdated(string& accountId) {
 	myFile.close();
 }
 
-void	update(string& accountId) {
+void update(string& accountId) {
 	char choice;
 	do {
 		cout << "Do You Wanna Update This Client ? Y : N : ";
@@ -73,6 +63,4 @@ void	update(string& accountId) {
 		cout << "\n\n The Client With Account Id (" << accountId << ") Is updated \n" << endl;
 		cout << "\n";
 	}
-
 }
-
