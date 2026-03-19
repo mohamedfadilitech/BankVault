@@ -1,5 +1,14 @@
+/**
+ * transaction.cpp
+ * Core logic for bank transactions: deposits, withdrawals, and balance inquiries.
+ * Operates on the clientsData.txt store to persist changes.
+ */
+#include <iostream>
+#include <fstream>
+#include <iomanip>
 #include "transaction.h"
-
+#include "deleteClient.h"
+#include "menu.h"
 double readAmount(string operation) {
 
 	double amount;
@@ -47,9 +56,13 @@ void backToFileUpdatedBalance(string& accountId, vector<stClient>& vClients, stC
 		vStr.push_back(to_string(c.accountBalance));
 		myFile << join(vStr) << "\n";
 	}
+    myFile.close();
 }
 
-void addToTheAccountBalance(string& accountId, double& amount, stClient& client) {
+/**
+ * Validates permission and updates the user's account balance positively.
+ */
+void addToTheAccountBalance(string& accountId, double& amount) {
 
 	if (askingPermission() == 'n')
 		return;
@@ -66,7 +79,10 @@ void addToTheAccountBalance(string& accountId, double& amount, stClient& client)
 	}
 }
 
-void depositOperation(stClient& client) {
+/**
+ * Prepares the deposit flow reading inputs and updating balances.
+ */
+void depositOperation() {
 	cout << "======================================\n";
 	cout << "\t Deposit Screen\n";
 	cout << "======================================\n";
@@ -74,16 +90,16 @@ void depositOperation(stClient& client) {
 	double amount;
 	string accountId = readAccountId();
 
-	if (!print_answer(accountId, client)) {
+	if (!print_answer(accountId)) {
 		return;
 	}
 	else {
 		amount = readAmount("Deposit");
-		addToTheAccountBalance(accountId, amount, client);
+		addToTheAccountBalance(accountId, amount);
 	}
 }
 
-void withdrawFromTheAccountBalance(string& accountId, double& amount, stClient& client) {
+void withdrawFromTheAccountBalance(string& accountId, double& amount) {
 
 	if (askingPermission() == 'n')
 		return;
@@ -104,7 +120,10 @@ void withdrawFromTheAccountBalance(string& accountId, double& amount, stClient& 
 	}
 }
 
-void withdrawOperation(stClient& client) {
+/**
+ * Prepares the withdrawal flow reading inputs and executing withdraw.
+ */
+void withdrawOperation() {
 	cout << "======================================\n";
 	cout << "\t Withdraw Screen\n";
 	cout << "======================================\n";
@@ -112,11 +131,11 @@ void withdrawOperation(stClient& client) {
 	double amount;
 	string accountId = readAccountId();
 
-	if (!print_answer(accountId, client)) {
+	if (!print_answer(accountId)) {
 	}
 	else {
 		amount = readAmount("Withdraw");
-		withdrawFromTheAccountBalance(accountId, amount, client);
+		withdrawFromTheAccountBalance(accountId, amount);
 	}
 }
 
@@ -151,17 +170,20 @@ void printBalances() {
 	cout << "\t\t\t\t\t ToTal Balances = (" << totalBalances(vClients) << ") " << "\t\t" << endl;
 }
 
-void choosingOperation(short selectedOption, stClient& client) {
+/**
+ * Delegates the user's selected transaction action.
+ */
+void choosingOperation(short selectedOption) {
 
 	while (selectedOption != 4) {
 		system("cls");
 
 		switch (selectedOption) {
 		case 1:
-			depositOperation(client);
+			depositOperation();
 			break;
 		case 2:
-			withdrawOperation(client);
+			withdrawOperation();
 			break;
 		case 3:
 			printBalances();
@@ -174,7 +196,10 @@ void choosingOperation(short selectedOption, stClient& client) {
 	}
 }
 
-void transaction(stClient& client) {
+/**
+ * Initiates the transaction flow by prompting for operation and dispatching.
+ */
+void transaction() {
 	short selectedOption = transactionMenu();
-	choosingOperation(selectedOption, client);
+	choosingOperation(selectedOption);
 }

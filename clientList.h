@@ -1,9 +1,12 @@
 #pragma once
-#include <iostream>
 #include <vector>
 #include <string>
-#include <fstream>
-#include <iomanip>
+
+/**
+ * clientList.h
+ * Contains the core stClient structure definition, along with the logic for 
+ * reading and displaying the client database.
+ */
 
 using namespace std;
 
@@ -15,7 +18,7 @@ struct stClient {
 	double accountBalance;
 };
 
-vector<string>   readLineFromFile();
+vector<string>   readLineFromFile(string fileName);
 vector<string>   split(string str, string delimiter = "#//#");
 stClient         vectorToSt(vector<string>& vStr);
 vector<stClient> FileToStClient();

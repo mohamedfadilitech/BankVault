@@ -1,5 +1,17 @@
+/**
+ * updateClient.cpp
+ * Contains logic to update the details of an existing client and syncs the changes
+ * to the storage file.
+ */
+#include <iostream>
+#include <fstream>
 #include "update.h"
+#include "deleteClient.h"
 
+/**
+ * Prompts user to input updated details for a specified client ID.
+ * @return Struct with new client information.
+ */
 stClient updateClient(string& accountId) {
 
 	stClient updatedClient;
@@ -18,6 +30,10 @@ stClient updateClient(string& accountId) {
 	return updatedClient;
 }
 
+/**
+ * Modifies the target client in the vector and overwrites the text record file.
+ * @param accountId Client to update.
+ */
 void backToFileUpdated(string& accountId) {
 
 	vector<stClient> vClients = FileToStClient();
@@ -50,6 +66,9 @@ void backToFileUpdated(string& accountId) {
 	myFile.close();
 }
 
+/**
+ * Initiates the update process, asks for permission, and saves details.
+ */
 void update(string& accountId) {
 	char choice;
 	do {

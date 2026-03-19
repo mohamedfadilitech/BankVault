@@ -1,12 +1,19 @@
+/**
+ * clientList.cpp
+ * Includes logic for splitting strings, parsing client details from text lines, 
+ * and echoing the complete list to the user.
+ */
+#include <iostream>
+#include <fstream>
+#include <iomanip>
 #include "clientList.h"
-
-vector<string> readLineFromFile() {
+vector<string> readLineFromFile(string fileName) {
 
 	fstream myFile;
 	string line;
 	vector<string> vLines;
 
-	myFile.open("clientsData.txt", ios::in);
+	myFile.open(fileName, ios::in);
 	if (!myFile.is_open()) {
 		cout << "error opening file \n";
 		return vLines;
@@ -23,6 +30,7 @@ vector<string> split(string str, string delimiter) {
 	string sWord;
 	size_t pos;
 
+	// Extract substrings separated by the given delimiter
 	while ((pos = str.find(delimiter)) != string::npos) {
 		sWord = str.substr(0, pos);
 		if (sWord != "")
@@ -38,10 +46,10 @@ stClient vectorToSt(vector<string>& vStr) {
 
 	stClient client;
 
-	client.accountId     = vStr.at(0);
-	client.pinCode       = vStr.at(1);
-	client.fullName      = vStr.at(2);
-	client.phone         = vStr.at(3);
+	client.accountId = vStr.at(0);
+	client.pinCode = vStr.at(1);
+	client.fullName = vStr.at(2);
+	client.phone = vStr.at(3);
 	client.accountBalance = stod(vStr.at(4));
 
 	return client;
@@ -49,7 +57,7 @@ stClient vectorToSt(vector<string>& vStr) {
 
 vector<stClient> FileToStClient() {
 
-	vector<string> vLines = readLineFromFile();
+	vector<string> vLines = readLineFromFile("clientsData.txt");
 	vector<string> splittedLine;
 	vector<stClient> clients;
 

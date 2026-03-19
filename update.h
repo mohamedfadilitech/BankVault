@@ -1,8 +1,13 @@
 #pragma once
-#include <iostream>
 #include <string>
+#include <vector>
 #include "clientList.h"
-#include "deleteClient.h"
+
+/**
+ * update.h
+ * Declarations for updating client account information, such as rewriting the
+ * data file with the new details.
+ */
 
 using namespace std;
 

@@ -1,8 +1,16 @@
 #pragma once
-#include <iostream>
+#include "login.h"
+
+/**
+ * menu.h
+ * Declarations for the UI display systems relating to selection menus.
+ */
 
 using namespace std;
 
-void  menuDesign();
+bool	hasPermission(stUser currentUser, enOperations operation);
+void  menuDesign(stUser currentUser);
 short transactionMenu();
-short menu();
+short manageUsersMenu();
+short menu(stUser currentUser);
+

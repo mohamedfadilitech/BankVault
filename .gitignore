@@ -1,32 +1,38 @@
-# ===== C++ generic =====
-*.d
-*.slo
-*.lo
-*.o
-*.obj
-*.gch
-*.pch
-
-# ===== Visual Studio =====
+# Visual Studio cache/options directory
 .vs/
-*.VC.db
-*.VC.opendb
+
+# Build results
+[Dd]ebug/
+[Dd]ebugPublic/
+[Rr]elease/
+[Rr]eleases/
+x64/
+x86/
+[Aa][Rr][Mm]/
+[Aa][Rr][Mm]64/
+bld/
+[Bb]in/
+[Oo]bj/
+
+# Visual Studio files
+*.sln
 *.suo
 *.user
 *.userosscache
 *.sln.docstates
+*.vcxproj
+*.vcxproj.filters
+*.vcxproj.user
 
-# Build folders
-Debug/
-Release/
-x64/
-x86/
-build/
+# Executables
+*.exe
+*.out
+*.app
 
-# Logs
-*.log
+# OS generated files
+.DS_Store
+Thumbs.db
 
-# Temporary files
-*.tmp
-*.tlog
-*.lastbuildstate
+# Data files (optional, depends if user wants them committed)
+# clientsData.txt
+# users.txt
